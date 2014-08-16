@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/LibUniDev.iml" filepath="$PROJECT_DIR$/LibUniDev.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libunidev/libunidev.iml" filepath="$PROJECT_DIR$/libunidev/libunidev.iml" />
+    </modules>
+  </component>
+</project>
+

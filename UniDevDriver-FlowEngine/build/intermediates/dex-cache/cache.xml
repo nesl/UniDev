@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pre-dex-items>
+
+    <item
+        dex="/Users/haksoo/AndroidstudioProjects/UniDev/UniDevDriver-FlowEngine/app/build/intermediates/pre-dexed/debug/classes-e072aeff4965d4e9c9867fa1fc5b8ecc7338ae2b.jar"
+        jar="/Users/haksoo/AndroidstudioProjects/UniDev/UniDevDriver-FlowEngine/app/build/intermediates/exploded-aar/UniDevDriver-FlowEngine....LibUniDev/libunidev/unspecified/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="df7fc78918e2406dfddde95c02d7c037a2a5b8d4"/>
+
+</pre-dex-items>

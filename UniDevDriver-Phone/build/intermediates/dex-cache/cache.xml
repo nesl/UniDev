@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<pre-dex-items>
+
+    <item
+        dex="/Users/haksoo/AndroidstudioProjects/UniDev/UniDevDriver-Phone/app/build/intermediates/pre-dexed/debug/classes-769909910d5f561fda224e1bc105e44d6b443a11.jar"
+        jar="/Users/haksoo/AndroidstudioProjects/UniDev/UniDevDriver-Phone/app/build/intermediates/exploded-aar/UniDevDriver-Phone....LibUniDev/libunidev/unspecified/classes.jar"
+        jumboMode="false"
+        revision="20.0.0"
+        sha1="788cd12e6350c434b8d5d6f43eed2940e1bc9371"/>
+
+</pre-dex-items>
