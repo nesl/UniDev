@@ -1,8 +1,9 @@
 package edu.ucla.nesl.flowengine.node;
 
+import android.os.RemoteException;
+
 import java.util.Map;
 
-import android.os.RemoteException;
 import edu.ucla.nesl.flowengine.DebugHelper;
 import edu.ucla.nesl.flowengine.Device;
 import edu.ucla.nesl.flowengine.Sensor;
@@ -78,7 +79,9 @@ public class SeedNode extends DataFlowNode {
 	
 	@Override
 	protected void processInput(String name, String type, Object data, int length, long timestamp) {
+
 		//DebugHelper.log(TAG, "name: " + name + ", type: " + type + ", length: " + length + ", timestamp: " + timestamp);
+
 		/*if (type.equals(DataType.STRING)) {
 			DebugHelper.log(TAG, (String)data);
 		}*/

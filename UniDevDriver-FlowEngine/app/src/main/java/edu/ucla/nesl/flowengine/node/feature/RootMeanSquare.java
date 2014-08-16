@@ -32,18 +32,35 @@ public class RootMeanSquare extends DataFlowNode {
 
 		return rms;
 	}
-	
-	@Override
+
+    private double calculateRootMeanSquare(float[] data) {
+        double rms = 0.0;
+
+        for (double value: data) {
+            rms += Math.pow(value/mFactor, 2.0);
+        }
+
+        rms = Math.sqrt(rms) * mScale;
+
+        return rms;
+    }
+
+    @Override
 	protected void processInput(String name, String type, Object inputData, int length, long timestamp) {
 		if (length <= 0) {
 			InvalidDataReporter.report("in " + TAG + ": name: " + name + ", type: " + type + ", length: " + length);
 			return;
 		}
-		if (!type.equals(DataType.DOUBLE_ARRAY)) {
-			throw new UnsupportedOperationException("Unsupported type: " + type);
-		}
 
-		double rms = calculateRootMeanSquare((double[])inputData);
+        double rms;
+		if (type.equals(DataType.DOUBLE_ARRAY)) {
+            rms = calculateRootMeanSquare((double[])inputData);
+        } else if (type.equals(DataType.FLOAT_ARRAY)) {
+            rms = calculateRootMeanSquare((float[])inputData);
+		} else {
+            throw new UnsupportedOperationException("Unsupported type: " + type);
+        }
+
 		//DebugHelper.log(TAG, "RMS: " + rms);
 		output(name + "RMS", DataType.DOUBLE, rms, 0, timestamp);
 	}

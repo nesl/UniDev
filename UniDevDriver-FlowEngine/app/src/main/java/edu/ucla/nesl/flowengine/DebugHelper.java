@@ -1,15 +1,15 @@
 package edu.ucla.nesl.flowengine;
 
-import java.util.Random;
-
 import android.os.Debug;
 import android.os.Debug.MemoryInfo;
 import android.util.Log;
 
+import java.util.Random;
+
 public class DebugHelper {
 	private static final String TAG = DebugHelper.class.getSimpleName();
 
-	private static boolean mIsLogging = false;
+	private static boolean mIsLogging = true;
 
 	public static boolean isMethodTrace = false;
 	public static boolean isAllocCounting = false;
