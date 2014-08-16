@@ -34,5 +34,5 @@ public interface UniversalEventListener {
 
 	void disconnected();
 	
-	void onUniversalServiceConnected();
+	void onUniDevConnected();
 }

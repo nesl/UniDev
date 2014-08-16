@@ -12,7 +12,9 @@ import android.os.Parcel;
 import android.os.RemoteException;
 import android.util.Log;
 
+import com.ucla.nesl.lib.UniversalDriverListener;
 import com.ucla.nesl.lib.UniversalEventListener;
+import com.ucla.nesl.universaldrivermanager.UniversalDriverManager;
 import com.ucla.nesl.universalsensormanager.UniversalSensorManager;
 
 import org.json.JSONObject;
@@ -34,7 +36,7 @@ import edu.ucla.nesl.flowengine.node.SeedNode;
 import edu.ucla.nesl.flowengine.util.NotificationHelper;
 import edu.ucla.nesl.flowengine.util.Utils;
 
-public class FlowEngine extends Service implements UniversalEventListener {
+public class FlowEngine extends Service implements UniversalEventListener, UniversalDriverListener {
 
     private static final String TAG = FlowEngine.class.getSimpleName();
     private static FlowEngine INSTANCE;
@@ -66,6 +68,7 @@ public class FlowEngine extends Service implements UniversalEventListener {
     private static final int LED_NOTIFICATION_ID = 1;
 
     private UniversalSensorManager mUniDevManager;
+    public UniversalDriverManager mUniDevDriverManager;
     private SeedNode mPhoneAccSeed;
 
     private NotificationHelper mNotification;
@@ -488,6 +491,7 @@ public class FlowEngine extends Service implements UniversalEventListener {
 
         DebugHelper.startTrace();
 
+        mUniDevDriverManager = UniversalDriverManager.create(getApplicationContext(), this, "FlowEngine");
         mUniDevManager = UniversalSensorManager.create(getApplicationContext(), this);
     }
 
@@ -590,13 +594,23 @@ public class FlowEngine extends Service implements UniversalEventListener {
     }
 
     @Override
+    public void setRate(int sType, int rate, int bundleSize) {
+
+    }
+
+    @Override
     public void disconnected() {
         // TODO Auto-generated method stub
 
     }
 
     @Override
-    public void onUniversalServiceConnected() {
+    public void onUniDevDriverConnected() {
+        mUniDevDriverManager.registerDriver(200, new int[] { 1 }, new int[] { 1 });
+    }
+
+    @Override
+    public void onUniDevConnected() {
         initActivityDataflow();
     }
 

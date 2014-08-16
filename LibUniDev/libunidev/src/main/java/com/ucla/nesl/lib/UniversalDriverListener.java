@@ -6,4 +6,5 @@ package com.ucla.nesl.lib;
 public interface UniversalDriverListener {
 	public void setRate(int sType, int rate, int bundleSize);
 	public void disconnected();
+    public void onUniDevDriverConnected();
 }

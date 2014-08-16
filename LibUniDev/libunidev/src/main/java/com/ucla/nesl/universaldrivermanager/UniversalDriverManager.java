@@ -120,4 +120,8 @@ public class UniversalDriverManager {
 		}
 
 	}
+
+    public UniversalDriverListener getEventListener() {
+        return mDriverManagerStub.mlistener;
+    }
 }

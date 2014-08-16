@@ -1,11 +1,6 @@
 package com.ucla.nesl.app;
 
 
-import java.util.ArrayList;
-import java.util.Map;
-
-import org.json.JSONObject;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -22,6 +17,11 @@ import com.ucla.nesl.app.universalsensorapp.R;
 import com.ucla.nesl.lib.UniversalEventListener;
 import com.ucla.nesl.lib.UniversalSensorNameMap;
 import com.ucla.nesl.universalsensormanager.UniversalSensorManager;
+
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.Map;
 
 public class UniversalSensorApp extends Activity implements UniversalEventListener {
 	private Button listDevices;
@@ -221,7 +221,9 @@ public class UniversalSensorApp extends Activity implements UniversalEventListen
 	@Override
 	public void onSensorChanged(String devID, int sType, float[] values, long[] timestamp) {
 		//Log.i(tag, "(" + values[0] + "," + values[1] + "," + values[2] + ")");
-		val += timestamp.length;
+        Log.i(tag, "onSensorChanged(): " + devID + ", " + sType + ", " + values[0] + ", " + timestamp[0]);
+
+        val += timestamp.length;
 		if (val == 100) {
 			val = 0;
 			oldTime = currentTime;
@@ -269,9 +271,8 @@ public class UniversalSensorApp extends Activity implements UniversalEventListen
 	public void disconnected() {
 	}
 
-	@Override
-	public void onUniversalServiceConnected() {
-		// TODO Auto-generated method stub
-		
-	}
+    @Override
+    public void onUniDevConnected() {
+
+    }
 }

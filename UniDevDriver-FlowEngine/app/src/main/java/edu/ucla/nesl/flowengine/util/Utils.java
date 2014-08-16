@@ -20,6 +20,7 @@ public class Utils {
             return;
         }
 
+        Log.i(tag, "Current device list:");
         for (Device device : devList) {
             Log.i(tag, device.getDevID());
             for (Integer i : device.getSensorList())

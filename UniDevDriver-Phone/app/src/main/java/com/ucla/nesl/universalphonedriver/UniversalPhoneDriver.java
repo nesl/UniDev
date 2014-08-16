@@ -1,7 +1,5 @@
 package com.ucla.nesl.universalphonedriver;
 
-import java.util.HashMap;
-
 import android.app.Service;
 import android.content.Intent;
 import android.hardware.Sensor;
@@ -15,6 +13,8 @@ import android.util.Log;
 import com.ucla.nesl.lib.UniversalDriverListener;
 import com.ucla.nesl.lib.UniversalSensor;
 import com.ucla.nesl.universaldrivermanager.UniversalDriverManager;
+
+import java.util.HashMap;
 
 public class UniversalPhoneDriver extends Service implements SensorEventListener, UniversalDriverListener {
 	private static String tag = UniversalPhoneDriver.class.getCanonicalName();
@@ -152,4 +152,9 @@ public class UniversalPhoneDriver extends Service implements SensorEventListener
 	{
 		setRate(Sensor.TYPE_ALL, 0, 0);
 	}
+
+    @Override
+    public void onUniDevDriverConnected() {
+
+    }
 }

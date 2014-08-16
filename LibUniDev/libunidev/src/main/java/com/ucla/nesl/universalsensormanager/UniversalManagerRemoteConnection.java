@@ -1,7 +1,5 @@
 package com.ucla.nesl.universalsensormanager;
 
-import java.util.ArrayList;
-
 import android.content.ComponentName;
 import android.content.ServiceConnection;
 import android.os.IBinder;
@@ -11,6 +9,8 @@ import android.util.Log;
 import com.ucla.nesl.aidl.Device;
 import com.ucla.nesl.aidl.IUniversalManagerService;
 import com.ucla.nesl.universalsensormanager.UniversalSensorManager.UniversalSensorManagerStub;
+
+import java.util.ArrayList;
 
 public class UniversalManagerRemoteConnection implements ServiceConnection {
 
@@ -29,7 +29,7 @@ public class UniversalManagerRemoteConnection implements ServiceConnection {
 		this.service = IUniversalManagerService.Stub.asInterface(service);
 		Log.d(tag, "Successfully established connection with UniversalService, now ready to perform remote operations.");
 		
-		mManager.getEventListener().onUniversalServiceConnected();
+		mManager.getEventListener().onUniDevConnected();
 	}
 
 	@Override

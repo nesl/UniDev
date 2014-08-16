@@ -2,6 +2,7 @@ package edu.ucla.nesl.flowengine.node.classifier;
 
 import edu.ucla.nesl.flowengine.DataType;
 import edu.ucla.nesl.flowengine.DebugHelper;
+import edu.ucla.nesl.flowengine.FlowEngine;
 import edu.ucla.nesl.flowengine.SensorType;
 import edu.ucla.nesl.flowengine.node.DataFlowNode;
 
@@ -48,6 +49,9 @@ public class Activity extends DataFlowNode {
 		if (activity != -1) {
 			DebugHelper.log(TAG, "activity = " + activity);
 			output(SensorType.ACTIVITY_CONTEXT_NAME, DataType.INTEGER, activity, 0, timestamp);
+
+            // Temporary Output
+            FlowEngine.getInstance().mUniDevDriverManager.push("FlowEngine", 200, new float[] { activity }, new long[] { timestamp });
 		}
 	}
 	

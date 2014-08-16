@@ -10,7 +10,9 @@ public class UniversalService extends Service {
 	
 	@Override
 	public void onCreate() {
-		super.onCreate();
+		android.os.Debug.waitForDebugger();
+
+        super.onCreate();
 	}
 
 	@Override

@@ -25,6 +25,7 @@ public class UniversalDriverRemoteConnection implements ServiceConnection
 	public void onServiceConnected(ComponentName name, IBinder service)
 	{
 		this.service = IUniversalManagerService.Stub.asInterface(service);
+        parent.getEventListener().onUniDevDriverConnected();
 	}
 
 	@Override
