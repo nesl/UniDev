@@ -1,0 +1,2 @@
+set solib-search-path /Users/haksoo/AndroidstudioProjects/UniDev/UniDevService/app/src/main/obj/local/armeabi-v7a
+directory //Users/haksoo/android-ndk-r10/platforms/android-14/arch-arm/usr/include /Users/haksoo/AndroidstudioProjects/UniDev/UniDevService/app/src/main/jni/android/include/system/core/include /Users/haksoo/AndroidstudioProjects/UniDev/UniDevService/app/src/main/jni/android/include/frameworks/native/include //Users/haksoo/android-ndk-r10/sources/cxx-stl/stlport/stlport //Users/haksoo/android-ndk-r10/sources/cxx-stl//gabi++/include

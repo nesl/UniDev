@@ -1,15 +1,12 @@
 package com.ucla.nesl.universalservice;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 import android.content.Context;
 import android.os.Binder;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.os.ParcelFileDescriptor;
 import android.os.RemoteException;
 import android.util.Log;
 
@@ -24,6 +21,12 @@ import com.ucla.nesl.lib.UniversalSensorNameMap;
 import com.ucla.nesl.universaldatastore.DataPurger;
 import com.ucla.nesl.universaldatastore.DataStoreManager;
 import com.ucla.nesl.universaldatastore.UniversalDataStore;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
+import io.vec.demo.android.ipc.IPC;
 
 public class UniversalManagerService extends IUniversalManagerService.Stub {
 	private static String tag = UniversalManagerService.class.getCanonicalName();
@@ -455,7 +458,14 @@ public class UniversalManagerService extends IUniversalManagerService.Stub {
 		return new String(""+Math.random());  //compute devID, for now using a random number
 	}
 
-	@Override
+    @Override
+    public void setFileDescriptor(ParcelFileDescriptor fd) throws RemoteException {
+        Log.d(tag, "got ParcelFileDescriptor: " + fd);
+        Log.d(tag, "    fd = " + fd.getFd());
+        IPC.setFd(fd.getFd());
+    }
+
+    @Override
 	public void registerNotification(IUniversalSensorManager mManager)
 	{
 		String mlistenerKey = generateListenerKey(Binder.getCallingPid());

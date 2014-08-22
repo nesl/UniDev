@@ -5,7 +5,10 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.MemoryFile;
+import android.os.ParcelFileDescriptor;
 import android.os.PowerManager;
+import android.os.RemoteException;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -20,8 +23,11 @@ import com.ucla.nesl.universalsensormanager.UniversalSensorManager;
 
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Map;
+
+import io.vec.demo.android.ipc.IPC;
 
 public class UniversalSensorApp extends Activity implements UniversalEventListener {
 	private Button listDevices;
@@ -31,7 +37,12 @@ public class UniversalSensorApp extends Activity implements UniversalEventListen
 	private Button unregisterDriver;
 	private Button startZephyr;
 	private Button startTestDriver;
-	private EditText edittext;
+    private Button testButton;
+
+    private MemoryFile mMemoryFile;
+    private int mFD;
+
+    private EditText edittext;
 	private String tag = UniversalSensorApp.class.getCanonicalName();
 	private UniversalSensorManager mManager;    
 	private String UNIVERSALDriverPackage = "com.ucla.nesl.universalphonedriver";
@@ -52,6 +63,7 @@ public class UniversalSensorApp extends Activity implements UniversalEventListen
 		edittext = (EditText)findViewById(R.id.edittext);
 		startZephyr = (Button)findViewById(R.id.startZephyr);
 		startTestDriver = (Button)findViewById(R.id.startTestDriver);
+        testButton = (Button)findViewById(R.id.testButton);
 		
 		mManager = UniversalSensorManager.create(getApplicationContext(), this);
 		
@@ -139,6 +151,7 @@ public class UniversalSensorApp extends Activity implements UniversalEventListen
 		unregisterDriver.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
+
 			}
 		});
 		
@@ -181,6 +194,31 @@ public class UniversalSensorApp extends Activity implements UniversalEventListen
 				startService(intent);
 			}
 		});
+
+        testButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i(tag, "Test button clicked.");
+
+                try {
+                    if (mMemoryFile == null) {
+                        mMemoryFile = new MemoryFile("shm-demo", 1024);
+                    }
+
+                    //boolean ipcStatus = IPC.setMemoryFile(mMemoryFile);
+
+                    mFD = IPC.setMemoryFile(mMemoryFile);
+                    Log.i(tag, "IPC.setMemoryFile() = " + mFD);
+
+                    mManager.remoteConnection.testRemoteConnection(ParcelFileDescriptor.fromFd(mFD));
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (RemoteException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 	}
 
 	void registerNotification()

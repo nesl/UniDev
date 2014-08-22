@@ -4,7 +4,7 @@ import com.ucla.nesl.aidl.IUniversalSensorManager;
 import com.ucla.nesl.aidl.IUniversalDriverManager;
 import com.ucla.nesl.aidl.Device;
 import com.ucla.nesl.aidl.SensorParcel;
-
+import android.os.ParcelFileDescriptor;
 
 interface IUniversalManagerService {
 	java.util.List<Device> listDevices();
@@ -18,4 +18,6 @@ interface IUniversalManagerService {
 	boolean listHistoricalDevices(IUniversalSensorManager mListenerStub);
 	boolean fetchHistoricalData(IUniversalSensorManager mManager, int txnID, String devID, int sType, long start, long end, long interval, int cmd); 
 	String getDevID();
+
+	void setFileDescriptor(in ParcelFileDescriptor fd);
 }

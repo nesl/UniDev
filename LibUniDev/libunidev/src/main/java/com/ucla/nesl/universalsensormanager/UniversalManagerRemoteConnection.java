@@ -3,6 +3,7 @@ package com.ucla.nesl.universalsensormanager;
 import android.content.ComponentName;
 import android.content.ServiceConnection;
 import android.os.IBinder;
+import android.os.ParcelFileDescriptor;
 import android.os.RemoteException;
 import android.util.Log;
 
@@ -44,7 +45,21 @@ public class UniversalManagerRemoteConnection implements ServiceConnection {
 		return service == null ? false : true;
 	}
 
-	public ArrayList<Device> listDevices() throws RemoteException
+    public void testRemoteConnection(ParcelFileDescriptor fd) throws RemoteException
+    {
+        // A better approach will be that we store the request and on connect
+        // we execute this later.
+        if (service == null) {
+            mManager.connectRemote();
+            Log.d(tag, "Service is not connected, failing listDevices");
+            return;
+        }
+        Log.d(tag, "testing connection..");
+
+        service.setFileDescriptor(fd);
+    }
+
+    public ArrayList<Device> listDevices() throws RemoteException
 	{
 		// A better approach will be that we store the request and on connect
 		// we execute this later.

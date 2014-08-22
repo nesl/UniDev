@@ -1,9 +1,5 @@
 package com.ucla.nesl.universalservice;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-
 import android.os.Bundle;
 import android.os.DeadObjectException;
 import android.os.Handler;
@@ -17,6 +13,10 @@ import com.ucla.nesl.aidl.IUniversalSensorManager;
 import com.ucla.nesl.lib.SensorParcelWrapper;
 import com.ucla.nesl.lib.UniversalConstants;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
+
 public class UniversalServiceListener extends Thread {
 	private static String tag = UniversalServiceListener.class.getCanonicalName();
 	private UniversalManagerService mService;
@@ -27,7 +27,7 @@ public class UniversalServiceListener extends Thread {
 	private Looper threadLooper;
 	private Handler mhandler;
 
-	public UniversalServiceListener()
+    public UniversalServiceListener()
 	{
 		mlistener = null;
 		callingPid = -1;
@@ -219,6 +219,8 @@ public class UniversalServiceListener extends Thread {
 			public void handleMessage(Message msg) {
 				switch (msg.what) {
 				case UniversalConstants.MSG_OnSensorChanged:
+                    //boolean isRemoved = msgQueue.remove(msg);
+                    //Log.d(tag, "isRemoved = " + isRemoved + ", q size = " + msgQueue.size());
 					SensorParcelWrapper spw = (SensorParcelWrapper) msg.obj;
 					onSensorChanged(spw.devID, spw.sType, spw.values, spw.timestamp);
 					break;
@@ -251,7 +253,7 @@ public class UniversalServiceListener extends Thread {
 		Looper.loop();
 	}
 
-	private class _Sensor
+    private class _Sensor
 	{
 		int 					counter     = 0;
 		int						lRate 	    = -1;

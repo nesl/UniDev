@@ -1,11 +1,5 @@
 package com.ucla.nesl.universalsensormanager;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.RemoteException;
@@ -15,12 +9,18 @@ import com.ucla.nesl.aidl.Device;
 import com.ucla.nesl.aidl.IUniversalSensorManager;
 import com.ucla.nesl.lib.UniversalEventListener;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+
 public class UniversalSensorManager {
 	private String UNIVERSALServicePackage = "com.ucla.nesl.universalsensorservice";
 	private String UNIVERSALServiceClass = "com.ucla.nesl.universalservice.UniversalService";
 	private static UniversalSensorManager mManager = null;
 	private UniversalSensorManagerStub mstub = null;
-	private UniversalManagerRemoteConnection remoteConnection;
+	public UniversalManagerRemoteConnection remoteConnection;
 	private Context context;
 	private static String tag = UniversalSensorManager.class.getCanonicalName();
 

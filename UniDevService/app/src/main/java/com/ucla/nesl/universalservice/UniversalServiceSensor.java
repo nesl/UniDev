@@ -1,18 +1,19 @@
 package com.ucla.nesl.universalservice;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.Map;
-
 import android.os.Bundle;
 import android.os.DeadObjectException;
 import android.os.Handler;
+import android.os.Message;
 import android.os.RemoteException;
 import android.util.Log;
 
 import com.ucla.nesl.lib.SensorParcelWrapper;
 import com.ucla.nesl.lib.UniversalConstants;
 import com.ucla.nesl.universaldatastore.UniversalDataStore;
+
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Map;
 
 public class UniversalServiceSensor {
 	private static String tag = UniversalServiceSensor.class.getCanonicalName();
@@ -167,7 +168,8 @@ public class UniversalServiceSensor {
 			for (Map.Entry<String, _Listener> entry : listenersList.entrySet())
 			{
 				Handler mhandler = entry.getValue().getHandler();
-				mhandler.sendMessage(mhandler.obtainMessage(UniversalConstants.MSG_OnSensorChanged, mSensorParcelWrapper));
+                Message msg = mhandler.obtainMessage(UniversalConstants.MSG_OnSensorChanged, mSensorParcelWrapper);
+				mhandler.sendMessage(msg);
 			}
 		}
 
